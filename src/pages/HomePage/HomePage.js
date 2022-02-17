@@ -1,11 +1,21 @@
+import { Container, Grid } from '@mui/material';
 import React from 'react';
-import './HomePage.css';
+import SearchBox from './SearchBox/SearchBox';
+import Statistics from './Statistics/Statistics';
+
 
 const HomePage = () => {
     return (
-        <div>
-            HomePage
-        </div>
+        <Container sx={{ mt: 5 }}>
+            <Grid container sx={{ flexDirection: 'column', gap: 5 }}>
+                <Grid item>
+                    <SearchBox />
+                </Grid>
+                <Grid item>
+                    <Statistics />
+                </Grid>
+            </Grid>
+        </Container>
     );
 };
 

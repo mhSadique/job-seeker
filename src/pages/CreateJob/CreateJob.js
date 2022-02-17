@@ -110,7 +110,7 @@ const CreateJob = () => {
                 <input
                     type="text"
                     name="jobResponsibilities"
-                    placeholder="Job Responsibilities"
+                    placeholder="Put a semi-colon ( ; ) between each point"
                     value={employerInfo.jobResponsibilities}
                     onChange={(e) => onInputChange(e)}
                 />
@@ -151,7 +151,7 @@ const CreateJob = () => {
                 <input
                     type="text"
                     name="educationalRequirements"
-                    placeholder="Educational Requirements"
+                    placeholder="Put a semi-colon ( ; ) between each point"
                     value={employerInfo.educationalRequirements}
                     onChange={(e) => onInputChange(e)}
                 />
@@ -161,7 +161,7 @@ const CreateJob = () => {
                 <input
                     type="text"
                     name="experienceRequirements"
-                    placeholder="Experience Requirements"
+                    placeholder="Put a semi-colon ( ; ) between each point"
                     value={employerInfo.experienceRequirements}
                     onChange={(e) => onInputChange(e)}
                 />
