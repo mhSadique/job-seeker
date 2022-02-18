@@ -8,7 +8,7 @@ const SearchBox = () => {
     const history = useHistory();
     const [searchText, setSearchText] = useState("");
     return (
-        <Grid container xs={{}}>
+        <Grid container xs={{ justifyContent: 'stretch' }}>
             <Grid item sx={{ flexGrow: 9, mr: 1 }}>
                 <TextField
                     id="outlined-basic"
@@ -19,7 +19,7 @@ const SearchBox = () => {
                     onChange={(e) => setSearchText(e.target.value)}
                 />
             </Grid>
-            <Grid item sx={{ flexGrow: 1 }}>
+            <Grid item sx={{ flexGrow: 0 }}>
                 <Button
                     variant="contained"
                     onClick={() => {

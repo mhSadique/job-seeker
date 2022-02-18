@@ -105,6 +105,16 @@ const NavigationBar = () => {
                             Homepage
                         </Button>
                         <Button
+                            key={"JobDescription"}
+                            onClick={() => {
+                                history.push('/job-description');
+                                handleCloseNavMenu();
+                            }}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            Job Description
+                        </Button>
+                        <Button
                             key={"Sign up"}
                             onClick={() => {
                                 history.push('/sign-up');
