@@ -12,7 +12,7 @@ const Courses = () => {
             .then(data => setCourses(data));
     }, []);
     return (
-        <Card sx={{ p: 2 }}>
+        <Card sx={{ p: 2, backgroundColor: '#f9f9fa' }}>
             <Typography component='h3' variant='h4' sx={{ mb: 2 }}>
                 Courses
             </Typography>
