@@ -22,7 +22,7 @@ const EmployerCreateAccount = () => {
 
     const handleAddNewProduct = (e) => {
 
-        fetch('PUT-API-HERE', { // **************************** //
+        fetch('https://cryptic-retreat-93579.herokuapp.com/api/register/employer', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -31,11 +31,10 @@ const EmployerCreateAccount = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert(data);
                 setUserInfo(initialState)
+                console.log(data);
             })
 
-        console.log(userInfo);
         setUserInfo(initialState);
         e.preventDefault();
     };

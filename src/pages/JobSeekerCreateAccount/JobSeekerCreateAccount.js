@@ -18,7 +18,7 @@ const JobSeekerCreateAccount = () => {
         passportNumber: '',
         nationalId: '',
         bloodGroup: '',
-        skillType: '',
+        skillType: ''
     };
 
     const [userInfo, setUserInfo] = useState(initialState);
@@ -26,7 +26,7 @@ const JobSeekerCreateAccount = () => {
 
     const handleAddNewProduct = (e) => {
 
-        fetch('PUT-API-HERE', { // **************************** //
+        fetch('https://cryptic-retreat-93579.herokuapp.com/api/registerUser', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -35,8 +35,9 @@ const JobSeekerCreateAccount = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert(data);
-                setUserInfo(initialState)
+                console.log(data);
+                // setUserInfo(initialState);
+                console.log(data);
             })
 
         console.log(userInfo);

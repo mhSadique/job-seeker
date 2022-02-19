@@ -12,6 +12,7 @@ import NavigationBar from './GlobalComponents/NavigationBar/NavigationBar';
 import SearchPage from './pages/SearchPage/SearchPage';
 import JobDescription from './pages/JobDescription/JobDescription';
 import Footer from './GlobalComponents/Footer/Footer';
+import ApplyJob from './pages/ApplyJob/ApplyJob';
 
 function App() {
   return (
@@ -31,13 +32,18 @@ function App() {
         <Route path="/search/:searchText">
           <SearchPage />
         </Route>
-        <Route path="/job-description">
+        <Route path="/job-description/:id">
           <JobDescription />
+        </Route>
+        <Route path="/apply-job">
+          <ApplyJob />
         </Route>
         <Route exact path="/">
           <HomePage />
         </Route>
       </Switch>
+
+
       <Footer />
     </Router>
   );

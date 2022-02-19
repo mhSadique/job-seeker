@@ -44,7 +44,7 @@ const CreateJob = () => {
 
         };
 
-        fetch('PUT-API-HERE', { // **************************** //
+        fetch('https://cryptic-retreat-93579.herokuapp.com/api/create/jobs', { // **************************** //
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -53,12 +53,11 @@ const CreateJob = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert(data);
-                setEmployerInfo(initialState)
+                console.log(data);
+                // setEmployerInfo(initialState)
             })
 
-        console.log(newEmployerInfo);
-        setEmployerInfo(initialState);
+        // setEmployerInfo(initialState);
         e.preventDefault();
     };
 

@@ -23,6 +23,7 @@ const SearchBox = () => {
                 <Button
                     variant="contained"
                     onClick={() => {
+                        if (!searchText) return;
                         history.push(`/search/${searchText}`);
                     }}
                     sx={{

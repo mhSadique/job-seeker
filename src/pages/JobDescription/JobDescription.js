@@ -2,28 +2,27 @@ import React from 'react';
 import { Container, Grid } from '@mui/material';
 import { useEffect, useState } from "react";
 import Job from './Job';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 const JobDescription = () => {
-    console.log('jobs');
-    const [job, setJob] = useState([]);
+    const { id } = useParams();
+    const [job, setJob] = useState({});
+    console.log(job);
 
     useEffect(() => {
-        fetch('./service.json')
+        fetch(`https://cryptic-retreat-93579.herokuapp.com/api/jobs/${id}`)
             .then(res => res.json())
-            .then(data => setJob(data))
-    }, [])
+            .then(data => setJob(data.jobs))
+    }, [id])
 
     return (
 
         <Container>
-            <Grid container spacing={4}>
-                {
-                    job.map(details =>
-                        <Job
-                            key={details.key}
-                            details={details}
-                        ></Job>)
-                }
+            <Grid container sx={{ mt: 3 }}>
+                {job._id && <Job
+                    key={job._id}
+                    details={job}
+                />}
 
             </Grid>
         </Container>
