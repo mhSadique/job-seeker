@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import JobCategorySingle from '../../../components/JobCategorySingle/JobCategorySingle';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from '../../../redux/features/categories/categoriesSlice';
 
 const Categories = () => {
-    const [categories, setCategories] = useState([]);
-
+    const categories = useSelector(state => state.categories);
+    console.log(categories);
+    const dispatch = useDispatch();
+    // Need to change the dependencies of useEffect because it is rendered mulitple times and existing categories keep adding 
     useEffect(() => {
-        fetch('/fakeData.json')
-            .then(res => res.json())
-            .then(data => setCategories(data))
-    }, []);
+        dispatch(fetchCategories);
+    }, [dispatch]);
 
     return (
         <Paper elevation={0}>
@@ -23,7 +25,7 @@ const Categories = () => {
                 Browse Category
             </Typography>
             <Grid container sx={{ rowGap: 1 }}>
-                {categories.map(cat => <JobCategorySingle jobCategory={cat.type} />)}
+                {categories.map(cat => <JobCategorySingle jobCategory={cat} key={cat} />)}
             </Grid>
         </Paper>
     );

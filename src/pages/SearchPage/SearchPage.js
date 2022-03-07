@@ -1,39 +1,39 @@
-import { Paper, Container } from '@mui/material';
+import { Paper, Container, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import SingleJobInSearchResultPage from '../../components/SingleJobInSearchResultPage/SingleJobInSearchResultPage';
 
 const SearchPage = () => {
-    const history = useHistory();
     const { searchText } = useParams();
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
         fetch(`https://cryptic-retreat-93579.herokuapp.com/api/jobs?keyword=${searchText}`)
             .then(res => res.json())
-            .then(data => setJobs(data.allJobs))
+            .then(data => setJobs(data.allJobs));
     }, [searchText]);
-    console.log(jobs);
+
     return (
-        <Container>
-            <Paper>
-                <h1>This is Search Result page </h1>
-                <h2>The search text is: {searchText}</h2>
-                <ul>
+        jobs.length && <Container sx={{ minHeight: '90vh' }}>
+            <Paper
+                elevation={0}
+                sx={{ mt: 2 }}>
+                <Typography
+                    component='body'
+                    variant='h6'
+                    sx={{ pl: 2, fontWeight: '600' }}
+                >
+                    Showing search result for: {searchText} {`(${jobs.length} ${jobs.length > 1 ? 'results' : 'result'})`}
+                </Typography>
+                <Grid
+                    container
+                    sx={{ p: 2, flexWrap: 'wrap', gap: 2 }}>
                     {jobs.map(job => (
                         <>
-                            <li>{job._id}</li>
-                            <button
-                                onClick={() => {
-                                    history.push(`/job-description/${job._id}`);
-                                    console.log(job._id);
-                                }}
-                            >
-                                Take me to job description page
-                            </button>
+                            <SingleJobInSearchResultPage job={job} />
                         </>
                     ))}
-                </ul>
+                </Grid>
             </Paper>
         </Container>
     );

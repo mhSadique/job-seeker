@@ -8,7 +8,7 @@ const SearchBox = () => {
     const history = useHistory();
     const [searchText, setSearchText] = useState("");
     return (
-        <Grid container xs={{ justifyContent: 'stretch' }}>
+        <Grid container sx={{ justifyContent: 'stretch' }}>
             <Grid item sx={{ flexGrow: 9, mr: 1 }}>
                 <TextField
                     id="outlined-basic"

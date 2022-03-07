@@ -17,7 +17,7 @@ const Statistics = () => {
 
     return (
         <Paper sx={{ p: 2 }} elevation={4}>
-            <Grid container xs={{}}>
+            <Grid container sx={{}}>
                 <Grid item sx={{ flexGrow: 1 }}>
                     <Grid container>
                         <StackedLineChartIcon sx={iconStyle} />

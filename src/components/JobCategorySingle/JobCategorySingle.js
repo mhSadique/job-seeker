@@ -4,12 +4,13 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const JobCategorySingle = ({ jobCategory }) => {
     return (
-        <Grid item sx={{ flexGrow: 1, flexBasis: '33.33333%' }}>
+        <Grid item sx={{ flexGrow: 1, flexBasis: '50%' }}>
             <Grid container sx={{ alignItems: 'center' }}>
                 <Grid item>
                     <ArrowRightIcon />
                 </Grid>
-                <Grid item>
+                <Grid item
+                >
                     <Typography
                         component='h4'
                         variant='h6'
