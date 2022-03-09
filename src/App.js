@@ -13,6 +13,7 @@ import SearchPage from './pages/SearchPage/SearchPage';
 import JobDescription from './pages/JobDescription/JobDescription';
 import Footer from './GlobalComponents/Footer/Footer';
 import ApplyJob from './pages/ApplyJob/ApplyJob';
+import CategoryDetails from './pages/CategoryDetails/CategoryDetails';
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path="/apply-job">
           <ApplyJob />
+        </Route>
+        <Route path="/category-details/:categoryName">
+          <CategoryDetails />
         </Route>
         <Route exact path="/">
           <HomePage />

@@ -35,9 +35,8 @@ const JobSeekerCreateAccount = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                console.log(data, 'USER');
                 // setUserInfo(initialState);
-                console.log(data);
             })
 
         console.log(userInfo);
