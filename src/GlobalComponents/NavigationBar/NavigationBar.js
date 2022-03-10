@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,6 +16,7 @@ import Logo from '../../components/Logo/Logo';
 import { useHistory } from "react-router-dom";
 
 const NavigationBar = () => {
+    const user = useSelector(state => state.user);
     const history = useHistory();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -22,6 +24,7 @@ const NavigationBar = () => {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
+
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -34,11 +37,10 @@ const NavigationBar = () => {
         setAnchorElUser(null);
     };
 
-
     return (
         <AppBar position="static">
             <Container maxWidth="lg">
-                <Toolbar disableGutters>
+                <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
                     <Typography
                         variant="h6"
                         noWrap
@@ -77,12 +79,26 @@ const NavigationBar = () => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            <MenuItem key={"HomePage"} onClick={() => {
-                                handleCloseNavMenu();
-                                history.push('/');
-                            }}>
-                                <Typography textAlign="center">Homepage</Typography>
-                            </MenuItem>
+                            {!user.role && <Box>
+                                <MenuItem key={"login"} onClick={() => {
+                                    handleCloseNavMenu();
+                                    history.push('/login');
+                                }}>
+                                    <Typography textAlign="center">Login</Typography>
+                                </MenuItem>
+                                <MenuItem key={"employer-create-account"} onClick={() => {
+                                    handleCloseNavMenu();
+                                    history.push('/employer-create-account');
+                                }}>
+                                    <Typography textAlign="center">Sign Up as Employer</Typography>
+                                </MenuItem>
+                                <MenuItem key={"job-seeker-create-account"} onClick={() => {
+                                    handleCloseNavMenu();
+                                    history.push('/job-seeker-create-account');
+                                }}>
+                                    <Typography textAlign="center">Sign Up as Job Seeker</Typography>
+                                </MenuItem>
+                            </Box>}
                         </Menu>
                     </Box>
                     <Typography
@@ -93,45 +109,55 @@ const NavigationBar = () => {
                     >
                         <Logo />
                     </Typography>
-                    <Box sx={{ justifyContent: 'flex-end', flexGrow: 1, mr: 2, display: { xs: 'none', md: 'flex' } }}>
+                    {!user.role && <Box sx={{ justifyContent: 'flex-end', flexGrow: 1, mr: 2, display: { xs: 'none', md: 'flex' } }}>
                         <Button
                             key={"Homepage"}
                             onClick={() => {
-                                history.push('/');
+                                history.push('/employer-login');
                                 handleCloseNavMenu();
                             }}
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >
-                            Homepage
+                            Login as Employer
                         </Button>
                         <Button
-                            key={"JobDescription"}
+                            key={"Homepage"}
                             onClick={() => {
-                                history.push('/job-description');
+                                history.push('/jobseeker-login');
                                 handleCloseNavMenu();
                             }}
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >
-                            Job Description
+                            Login as Job Seeker
                         </Button>
                         <Button
-                            key={"Sign up"}
+                            key={"Sign up as employer"}
                             onClick={() => {
-                                history.push('/sign-up');
+                                history.push('/employer-create-account');
                                 handleCloseNavMenu();
                             }}
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >
-                            Sign Up
+                            Sign Up as Employer
                         </Button>
-                    </Box>
+                        <Button
+                            key={"Sign up as Job Seeker"}
+                            onClick={() => {
+                                history.push('/job-seeker-create-account');
+                                handleCloseNavMenu();
+                            }}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            Sign Up as Job Seeker
+                        </Button>
+                    </Box>}
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
+                        {user.role && <Tooltip title="Dashboard">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Sadique" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt={user.firstName} src="/static/images/avatar/2.jpg" />
                             </IconButton>
-                        </Tooltip>
+                        </Tooltip>}
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
@@ -148,24 +174,37 @@ const NavigationBar = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            <MenuItem key={"job-seeker-create-account"} onClick={() => {
-                                handleCloseUserMenu();
-                                history.push('/job-seeker-create-account');
-                            }}>
-                                <Typography textAlign="center">Create Job Seeker Account</Typography>
-                            </MenuItem>
-                            <MenuItem key={"employer-create-account"} onClick={() => {
-                                handleCloseUserMenu();
-                                history.push('/employer-create-account');
-                            }}>
-                                <Typography textAlign="center">Create Employer Account</Typography>
-                            </MenuItem>
-                            <MenuItem key={"create-job"} onClick={() => {
-                                handleCloseUserMenu();
-                                history.push('/create-job');
-                            }}>
-                                <Typography textAlign="center">Create a Job</Typography>
-                            </MenuItem>
+                            {/* See all the jobs that was applied to you */}
+                            {user.role === 'employer'
+                                ? <Box>
+                                    <MenuItem key={"job-seeker-create-account"} onClick={() => {
+                                        handleCloseUserMenu();
+                                        history.push('/employer-dashboard');
+                                    }}>
+                                        <Typography textAlign="center">Jobs applied to me</Typography>
+                                    </MenuItem>
+                                    {/* Create a job an employer */}
+                                    <MenuItem key={"create-job"} onClick={() => {
+                                        handleCloseUserMenu();
+                                        history.push('/create-job');
+                                    }}>
+                                        <Typography textAlign="center">Create a Job</Typography>
+                                    </MenuItem>
+                                    <MenuItem key={"logout"} onClick={() => {
+                                        handleCloseUserMenu();
+                                        history.push('/logout');
+                                    }}>
+                                        <Typography textAlign="center">Logout</Typography>
+                                    </MenuItem>
+                                </Box>
+                                : <Box>
+                                    <MenuItem key={"logout"} onClick={() => {
+                                        handleCloseUserMenu();
+                                        history.push('/logout');
+                                    }}>
+                                        <Typography textAlign="center">Logout</Typography>
+                                    </MenuItem>
+                                </Box>}
                         </Menu>
                     </Box>
                 </Toolbar>

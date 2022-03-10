@@ -19,9 +19,9 @@ const HomePage = () => {
                 <Grid item>
                     <Categories />
                 </Grid>
-                <Grid item>
+                {/* <Grid item>
                     <CoursesAndEvents />
-                </Grid>
+                </Grid> */}
             </Grid>
         </Container>
     );

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './JobSeekerCreateAccount.css';
 const JobSeekerCreateAccount = () => {
-
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
     const initialState = {
         userType: 'job-seeker',
         email: '',
@@ -35,12 +39,16 @@ const JobSeekerCreateAccount = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data, 'USER');
-                // setUserInfo(initialState);
+                if (data.success) {
+                    localStorage.setItem('token', data.token);
+                    dispatch({ type: 'userFound', payload: data.user });
+                    alert('You have registered successfully.');
+                    setUserInfo(initialState);
+                    history.push('/');
+                }
             })
 
         console.log(userInfo);
-        setUserInfo(initialState);
         e.preventDefault();
     };
 

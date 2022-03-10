@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Job = ({ details }) => {
+const Job = ({ details, id }) => {
     const history = useHistory();
     const { salary, applicantAge, company, applicantGender, applicationDeadline, educationalRequirements, employmentStatus, employmentType, experienceRequirements, jobCategory, jobKeySellingPoints, jobLocation, jobResponsibilities, jobTitle, jobVacancy, publishedOn, _id } = details;
 
@@ -63,7 +63,7 @@ const Job = ({ details }) => {
                     <Button
                         variant='contained'
                         onClick={() => {
-                            history.push(`/apply-job`)
+                            history.push(`/apply-job/${id}`)
                         }}
                     >
                         Apply

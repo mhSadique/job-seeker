@@ -19,7 +19,7 @@ const JobDescription = () => {
 
         <Container>
             <Grid container sx={{ mt: 3, minHeight: '90vh' }}>
-                {job._id && <Job key={job._id}
+                {job._id && <Job key={job._id} id={id}
                     details={job}
                 />}
 

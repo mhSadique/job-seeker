@@ -25,6 +25,7 @@ const CreateJob = () => {
 
 
     const handleAddNewProduct = (e) => {
+        e.preventDefault();
         const employerInfoRaw = employerInfo;
         const jobResponsibilitiesString = employerInfoRaw.jobResponsibilities;
         const jobKeySellingPointsString = employerInfoRaw.jobKeySellingPoints;
@@ -47,18 +48,21 @@ const CreateJob = () => {
         fetch('https://cryptic-retreat-93579.herokuapp.com/api/create/jobs', { // **************************** //
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                Authorization: localStorage.getItem("token")
             },
             body: JSON.stringify(newEmployerInfo)
         })
             .then(res => res.json())
             .then(data => {
+                if (data.success) {
+                    alert('Job created')
+                }
                 console.log(data);
                 // setEmployerInfo(initialState)
             })
 
         // setEmployerInfo(initialState);
-        e.preventDefault();
     };
 
 
@@ -114,7 +118,6 @@ const CreateJob = () => {
                     onChange={(e) => onInputChange(e)}
                 />
                 <br />
-
 
                 <label htmlFor="jobKeySellingPoints">Key Selling Points: </label><br />
                 <input

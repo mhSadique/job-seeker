@@ -14,6 +14,10 @@ import JobDescription from './pages/JobDescription/JobDescription';
 import Footer from './GlobalComponents/Footer/Footer';
 import ApplyJob from './pages/ApplyJob/ApplyJob';
 import CategoryDetails from './pages/CategoryDetails/CategoryDetails';
+import EmployerLogin from './pages/EmployerLogin/EmployerLogin';
+import JobSeekerLogin from './pages/JobSeekerLogin/JobSeekerLogin';
+import EmployerDashboard from './pages/EmployerDashboard/EmployerDashboard';
+import ApplicantDetails from './pages/ApplicantDetails/ApplicantDetails';
 
 function App() {
   return (
@@ -33,11 +37,23 @@ function App() {
         <Route path="/search/:searchText">
           <SearchPage />
         </Route>
+        <Route path="/employer-login">
+          <EmployerLogin />
+        </Route>
+        <Route path="/employer-dashboard">
+          <EmployerDashboard />
+        </Route>
+        <Route path="/jobseeker-login">
+          <JobSeekerLogin />
+        </Route>
         <Route path="/job-description/:id">
           <JobDescription />
         </Route>
-        <Route path="/apply-job">
+        <Route path="/apply-job/:id">
           <ApplyJob />
+        </Route>
+        <Route path="/applicant-info/:id">
+          <ApplicantDetails />
         </Route>
         <Route path="/category-details/:categoryName">
           <CategoryDetails />
@@ -48,7 +64,7 @@ function App() {
       </Switch>
 
 
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }
