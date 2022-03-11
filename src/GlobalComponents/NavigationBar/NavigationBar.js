@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -18,6 +18,7 @@ import { useHistory } from "react-router-dom";
 const NavigationBar = () => {
     const user = useSelector(state => state.user);
     const history = useHistory();
+    const dispatch = useDispatch();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -36,6 +37,8 @@ const NavigationBar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    console.log(user, 'NAVIGATION');
 
     return (
         <AppBar position="static">
@@ -80,22 +83,37 @@ const NavigationBar = () => {
                             }}
                         >
                             {!user.role && <Box>
-                                <MenuItem key={"login"} onClick={() => {
-                                    handleCloseNavMenu();
-                                    history.push('/login');
-                                }}>
-                                    <Typography textAlign="center">Login</Typography>
+                                <MenuItem key={"employer-login"}
+                                    onClick={() => {
+                                        history.push('/employer-login');
+                                        handleCloseNavMenu();
+                                    }}
+                                >
+                                    <Typography textAlign="center">Login as Employer</Typography>
                                 </MenuItem>
-                                <MenuItem key={"employer-create-account"} onClick={() => {
-                                    handleCloseNavMenu();
-                                    history.push('/employer-create-account');
-                                }}>
+
+                                <MenuItem key={"jobseeker-login"}
+                                    onClick={() => {
+                                        history.push('/jobseeker-login');
+                                        handleCloseNavMenu();
+                                    }}
+                                >
+                                    <Typography textAlign="center">Login as Job Seeker</Typography>
+                                </MenuItem>
+                                <MenuItem key={"employer-create-account"}
+                                    onClick={() => {
+                                        history.push('/employer-create-account');
+                                        handleCloseNavMenu();
+                                    }}
+                                >
                                     <Typography textAlign="center">Sign Up as Employer</Typography>
                                 </MenuItem>
-                                <MenuItem key={"job-seeker-create-account"} onClick={() => {
-                                    handleCloseNavMenu();
-                                    history.push('/job-seeker-create-account');
-                                }}>
+                                <MenuItem key={"job-seeker-create-account"}
+                                    onClick={() => {
+                                        history.push('/job-seeker-create-account');
+                                        handleCloseNavMenu();
+                                    }}
+                                >
                                     <Typography textAlign="center">Sign Up as Job Seeker</Typography>
                                 </MenuItem>
                             </Box>}
@@ -192,7 +210,9 @@ const NavigationBar = () => {
                                     </MenuItem>
                                     <MenuItem key={"logout"} onClick={() => {
                                         handleCloseUserMenu();
-                                        history.push('/logout');
+                                        dispatch({ type: 'userFound', payload: {} });
+                                        localStorage.clear();
+                                        history.push('/');
                                     }}>
                                         <Typography textAlign="center">Logout</Typography>
                                     </MenuItem>
@@ -200,7 +220,9 @@ const NavigationBar = () => {
                                 : <Box>
                                     <MenuItem key={"logout"} onClick={() => {
                                         handleCloseUserMenu();
-                                        history.push('/logout');
+                                        dispatch({ type: 'userFound', payload: {} });
+                                        localStorage.clear();
+                                        history.push('/');
                                     }}>
                                         <Typography textAlign="center">Logout</Typography>
                                     </MenuItem>

@@ -6,10 +6,10 @@ import Events from './Events/Events';
 const CoursesAndEvents = () => {
     return (
         <Grid container sx={{ columnGap: 3 }}>
-            <Grid item sx={{ flexBasis: '48%' }}>
+            <Grid item sx={{ sm: { flexBasis: '100%' }, lg: { flexBasis: '48%' } }}>
                 <Courses />
             </Grid>
-            <Grid item sx={{ flexBasis: '48%' }}>
+            <Grid item sx={{ sm: { flexBasis: '100%' }, lg: { flexBasis: '48%' } }}>
                 <Events />
             </Grid>
         </Grid>

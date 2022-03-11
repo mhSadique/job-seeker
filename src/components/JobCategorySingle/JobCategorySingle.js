@@ -6,7 +6,8 @@ import { useHistory } from 'react-router-dom';
 const JobCategorySingle = ({ jobCategory }) => {
     const history = useHistory();
     return (
-        <Grid item sx={{ flexGrow: 1, flexBasis: '50%' }}>
+        // <Grid item sx={{ flexGrow: 1, flexBasis: '50%' }}>
+        <Grid item sx={{ flexGrow: 1 }}>
             <Grid container sx={{ alignItems: 'center' }}>
                 <Grid item>
                     <ArrowRightIcon />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
@@ -7,6 +7,27 @@ import HighlightAltIcon from '@mui/icons-material/HighlightAlt';
 import { Box, Paper, Typography } from '@mui/material';
 
 const Statistics = () => {
+    const [jobs, setJobs] = useState(0);
+    const [categories, setCategories] = useState(0);
+    useEffect(() => {
+        fetch('https://cryptic-retreat-93579.herokuapp.com/api/getAll/jobs')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    setJobs(data.getAllJobs.length);
+                }
+            })
+    }, [])
+
+    useEffect(() => {
+        fetch('https://cryptic-retreat-93579.herokuapp.com/api/getAll/category')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    setCategories(data.getAllCategory.length);
+                }
+            })
+    }, [])
 
     const iconStyle = {
         color: '#1976D2',
@@ -18,7 +39,7 @@ const Statistics = () => {
     return (
         <Paper sx={{ p: 2 }} elevation={4}>
             <Grid container sx={{}}>
-                <Grid item sx={{ flexGrow: 1 }}>
+                <Grid item sx={{ flexGrow: 1, my: 2 }} sm={6} md={3}>
                     <Grid container>
                         <StackedLineChartIcon sx={iconStyle} />
                         <Box>
@@ -27,12 +48,12 @@ const Statistics = () => {
                             </Typography>
 
                             <Typography component='h2' variant='h5' sx={{ fontWeight: 'bold' }}>
-                                5346 {/* Taken form database later ******/}
+                                {jobs}
                             </Typography>
                         </Box>
                     </Grid>
                 </Grid>
-                <Grid item sx={{ flexGrow: 1 }}>
+                <Grid item sx={{ flexGrow: 1, my: 2 }} sm={6} md={3}>
                     <Grid container>
                         <PersonSearchIcon sx={iconStyle} />
                         <Box>
@@ -40,12 +61,12 @@ const Statistics = () => {
                                 Vacancies
                             </Typography>
                             <Typography component='h2' variant='h5' sx={{ fontWeight: 'bold' }}>
-                                5346 {/* Taken form database later ******/}
+                                {jobs}
                             </Typography>
                         </Box>
                     </Grid>
                 </Grid>
-                <Grid item sx={{ flexGrow: 1 }}>
+                <Grid item sx={{ flexGrow: 1, my: 2 }} sm={6} md={3}>
                     <Grid container>
                         <ApartmentIcon sx={iconStyle} />
                         <Box>
@@ -53,12 +74,12 @@ const Statistics = () => {
                                 Companies
                             </Typography>
                             <Typography component='h2' variant='h5' sx={{ fontWeight: 'bold' }}>
-                                5346 {/* Taken form database later ******/}
+                                {categories}
                             </Typography>
                         </Box>
                     </Grid>
                 </Grid>
-                <Grid item sx={{ flexGrow: 1 }}>
+                <Grid item sx={{ flexGrow: 1, my: 2 }} sm={6} md={3}>
                     <Grid container>
                         <HighlightAltIcon sx={iconStyle} />
                         <Box>
@@ -66,7 +87,7 @@ const Statistics = () => {
                                 New Jobs
                             </Typography>
                             <Typography component='h2' variant='h5' sx={{ fontWeight: 'bold' }}>
-                                5346 {/* Taken form database later ******/}
+                                {jobs}
                             </Typography>
                         </Box>
                     </Grid>

@@ -1,10 +1,18 @@
 [
     {
-        "courseName": "Brand Management Essentials",
+        "courseName": "Learn Electronics",
         "date": "18 - 19 Feb 2022"
     },
     {
-        "courseName": "Team Building Training",
+        "courseName": "Grow Your Mental Muscle",
+        "date": "18 - 19 Feb 2022"
+    },
+    {
+        "courseName": "Be A Productive Person",
+        "date": "18 - 19 Feb 2022"
+    },
+    {
+        "courseName": "Grow Your Online Business",
         "date": "18 - 19 Feb 2022"
     },
     {
@@ -16,23 +24,15 @@
         "date": "18 - 19 Feb 2022"
     },
     {
-        "courseName": "Facebook Marketing",
-        "date": "18 - 19 Feb 2022"
-    },
-    {
-        "courseName": "Grow Your Online Business",
-        "date": "18 - 19 Feb 2022"
-    },
-    {
         "courseName": "Be A Productive Person Taming Time",
         "date": "18 - 19 Feb 2022"
     },
     {
-        "courseName": "Grow Your Mental Muscle",
+        "courseName": "Team Building Training",
         "date": "18 - 19 Feb 2022"
     },
     {
-        "courseName": "Learn Electronics",
+        "courseName": "Brand Management Essentials",
         "date": "18 - 19 Feb 2022"
     }
 ]

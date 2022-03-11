@@ -5,20 +5,10 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 const ApplyJob = () => {
+    const [loading, setLoading] = useState(true);
     const { id } = useParams();
-    // const [user, setUser] = useState({});
     const history = useHistory();
     const user = useSelector(state => state.user);
-    console.log(user.role, 'APPLY');
-
-
-    // useEffect(() => {
-    //     fetch(`https://cryptic-retreat-93579.herokuapp.com/api/jobSeeker/${"6228d06f5a941f0016969950"}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setUser(data.user);
-    //         })
-    // }, []);
 
     const handleConfirm = () => {
         fetch(`https://cryptic-retreat-93579.herokuapp.com/api/apply/job`, {
@@ -31,7 +21,10 @@ const ApplyJob = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                if (data.success) {
+                    alert('Applied successfully!');
+                    history.push('/');
+                }
             })
     }
 
